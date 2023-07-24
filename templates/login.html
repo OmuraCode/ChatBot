@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+  body, html {
+    height: 100%;
+  }
+
+  .login-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+
+  .btn-login {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <div class="card">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      {% if error_message %}
+        <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-login">Login</button>
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-center">
+              <a style="color: whitesmoke;" href="{% url 'register' %}">Register for free</a>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
